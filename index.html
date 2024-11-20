@@ -15,8 +15,6 @@
 	</head>
 	<body class="is-preload">
 
-		<i class="fa-brands fa-whatsapp zap"></i>
-
 		<!-- Wrapper-->
 			<div id="wrapper">
 
@@ -54,10 +52,10 @@
 								<section>
 									<div class="row">
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
+											<a target="_blank" href="https://www.bit.ly/ecogrease" class="image fit"><img src="images/pic01.jpg" alt=""></a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
+											<a href="https://www.bit.ly/imcproj" class="image fit"><img src="images/pic02.jpg" alt=""></a>
 										</div>
 									</div>
 								</section>
@@ -68,20 +66,20 @@
 								<header>
 									<h2>Deixe sua mensagem</h2>
 								</header>
-								<form method="post">
+								<form method="post" onsubmit="enviarEmail(event)">
 									<div>
 										<div class="row">
 											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Nome" />
+												<input type="text" id="name" name="name" placeholder="Nome" required />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
+												<input type="email" id="email" name="email" placeholder="Email" required />
 											</div>
 											<div class="col-12">
-												<input type="text" name="subject" placeholder="Assunto" />
+												<input type="text" id="subject" name="subject" placeholder="Assunto" required />
 											</div>
 											<div class="col-12">
-												<textarea name="message" placeholder="Mensagem" rows="6"></textarea>
+												<textarea id="message" name="message" placeholder="Mensagem" rows="6" required></textarea>
 											</div>
 											<div class="col-12">
 												<input type="submit" value="Enviar Mensagem" />
@@ -89,6 +87,27 @@
 										</div>
 									</div>
 								</form>
+								
+								<script>
+									function enviarEmail(event) {
+										event.preventDefault(); // Impede o envio padrão do formulário
+								
+										// Captura os valores do formulário
+										const name = document.getElementById("name").value;
+										const email = document.getElementById("email").value;
+										const subject = document.getElementById("subject").value;
+										const message = document.getElementById("message").value;
+								
+										// Monta o link mailto com os dados do formulário
+										const mailtoLink = `mailto:destinatario@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+											`Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`
+										)}`;
+								
+										// Abre o cliente de email padrão com os dados preenchidos
+										window.location.href = mailtoLink;
+									}
+								</script>
+								
 							</article>
 
 					</div>
